@@ -5,10 +5,10 @@ import static util.MyLogger.sleep;
 
 public class BankMain {
     public static void main(String[] args) throws InterruptedException {
-        BankAccountV4 bankAccountV4 = new BankAccountV4(1000);
+        BankAccountV6 bankAccount = new BankAccountV6(1000);
 
-        Thread t1 = new Thread(new WithdrawTask(bankAccountV4, 800), "t1");
-        Thread t2 = new Thread(new WithdrawTask(bankAccountV4, 800), "t2");
+        Thread t1 = new Thread(new WithdrawTask(bankAccount, 800), "t1");
+        Thread t2 = new Thread(new WithdrawTask(bankAccount, 800), "t2");
 
         t1.start();
         t2.start();
@@ -19,7 +19,7 @@ public class BankMain {
         t1.join();
         t2.join();
 
-        log("최종 잔액: " + bankAccountV4.getBalance());
+        log("최종 잔액: " + bankAccount.getBalance());
 
     }
 }
